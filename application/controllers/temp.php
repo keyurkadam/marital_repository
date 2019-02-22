@@ -15,7 +15,7 @@
    */
 	    public function index()
 	    {
-	        $this->load->view('temp_view');
+	        $this->load->view('user/keyur');
 	    }
 
 

@@ -33,7 +33,7 @@ class login extends CI_Controller
 					$_SESSION["member_email"] = $login_row->member_email;
 					$_SESSION["member_id"]=$login_row->member_id;
 					$_SESSION["member_gender"]=$login_row->member_gender;
-					redirect(base_url().'home');
+					redirect(base_url().'user');
 					// $url=$_SERVER["HTTP_REFERER"];
 					// redirect($url);
 				}
@@ -56,7 +56,7 @@ class login extends CI_Controller
 		unset($_SESSION["member_id"]);
 		session_destroy();
 		//redirect(base_url().'login/login_check');
-		redirect(base_url().'user');
+		redirect(base_url().'login');
 	}
 }
 ?>

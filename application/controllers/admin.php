@@ -190,7 +190,7 @@ class admin extends CI_Controller
                 
                 //$data['settings_logo']='logonew.png';
                 
-                $this->smart_resize_image("files/admin/logo/" . $newname, 262, 200, true, "files/admin/logo/" . $newname, false, false);
+                // $this->smart_resize_image("files/admin/logo/" . $newname, 262, 200, true, "files/admin/logo/" . $newname, false, false);
                 
                 
             }

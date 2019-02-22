@@ -71,5 +71,30 @@ class home extends CI_Controller
 		// echo $max_age;
 		$this->load->view('user/home_view',$page_data);
 	}
+
+	public function find_member_from_home_page()
+	{
+		$from_age=$this->input->post("txt_from_age_find");
+		$to_age=$this->input->post("txt_to_age_find");
+		$gender=$this->input->post("cmb_gender_find");
+		$status=$this->input->post("cmb_status_find");
+
+		$this->db->select('*');
+		$this->db->from('tbl_member');
+		$this->db->where('member_marital_status',$status);
+		$this->db->where('member_gender',$gender);
+		$this->db->where('member_age >=',$from_age);
+		$this->db->where('member_age <=',$to_age);
+		$page_data['resultset']=$this->db->get();	
+
+		
+		$this->load->view('user/home_view',$page_data);
+
+	}
+
+	public function contact_us()
+	{
+		$this->load->view("user/contact_view");
+	}
 }
 ?>

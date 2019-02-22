@@ -124,7 +124,7 @@ $(document).ready(function(){
             <div id="myTabContent" class="tab-content">
               <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                 
-                <div class="basic_1">
+                <dxiv class="basic_1">
                   <h3>Basics & Lifestyle</h3>
                   <div class="col-md-6 basic_1-left">
                     <table class="table_working_hours">

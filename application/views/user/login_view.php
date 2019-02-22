@@ -1,3 +1,22 @@
+<?php 
+$settings_logo=$facebook_url=$google_plus_url=$twitter_url=$pinterest_url=$instagram_url=$settings_address=$settings_phone=$settings_email="";
+$settings_res = $this->db->get("tbl_settings");
+
+foreach($settings_res->result() as $setting_row)
+{
+    $settings_logo=$setting_row->settings_logo;
+    $facebook_url=$setting_row->facebook_url;
+    $google_plus_url=$setting_row->google_plus_url;
+    $twitter_url=$setting_row->twitter_url;
+    $pinterest_url=$setting_row->pinterest_url;
+    $instagram_url=$setting_row->instagram_url;
+    $min_single_qty=$setting_row->settings_single_min_qty;
+    $min_total_qty=$setting_row->settings_total_min_qty;
+    $settings_address=$setting_row->settings_address;
+    $settings_phone=$setting_row->settings_phone;
+    $settings_email=$setting_row->settings_contact_email;
+}
+?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -12,7 +31,6 @@
 <html>
     
 <head>
-	<title>My Awesome Login Page</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"crossorigin="anonymous">
@@ -25,7 +43,7 @@
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
 					<div class="brand_logo_container">
-						<img src="<?php echo base_url(); ?>template/user/images/logo.png" class="brand_logo" style="width: 135px; height: 50px; margin-top: 50px;" alt="Logo">
+						<img src="<?php echo base_url(); ?>files/admin/logo/<?php echo $settings_logo;?>" class="brand_logo" style=" " alt="Logo">
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
@@ -35,7 +53,7 @@
 						<div id="formvalid_txt_email_errorloc" class="error_strings" style="padding-left: 50px;"></div>
 						<div class="input-group mb-3">
 							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-user"></i></span>
+								<span class="input-group-text"><i class="fa fa-user"></i></span>
 							</div>
 							<input type="text" name="txt_email" id="txt_email" class="form-control input_user" value="" placeholder="Email">
 						</div>
@@ -61,7 +79,7 @@
 				
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
+						Don't have an account? <a href="<?php echo base_url(); ?>user/register" class="ml-2">Sign Up</a>
 					</div>
 					<div class="d-flex justify-content-center links">
 						<a href="#">Forgot your password?</a>

@@ -1,4 +1,22 @@
+<?php 
+$settings_logo=$facebook_url=$google_plus_url=$twitter_url=$pinterest_url=$instagram_url=$settings_address=$settings_phone=$settings_email="";
+$settings_res = $this->db->get("tbl_settings");
 
+foreach($settings_res->result() as $setting_row)
+{
+    $settings_logo=$setting_row->settings_logo;
+    $facebook_url=$setting_row->facebook_url;
+    $google_plus_url=$setting_row->google_plus_url;
+    $twitter_url=$setting_row->twitter_url;
+    $pinterest_url=$setting_row->pinterest_url;
+    $instagram_url=$setting_row->instagram_url;
+    $min_single_qty=$setting_row->settings_single_min_qty;
+    $min_total_qty=$setting_row->settings_total_min_qty;
+    $settings_address=$setting_row->settings_address;
+    $settings_phone=$setting_row->settings_phone;
+    $settings_email=$setting_row->settings_contact_email;
+}
+?>
 <style>
 .field-icon {
   float: right;
@@ -6,6 +24,13 @@
   margin-top: -25px;
   position: relative;
   z-index: 2;
+}
+
+.navbar-brand img {
+    max-height: 60px;
+    overflow: visible !important;
+    background-color: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.7);
 }
 
 
@@ -38,16 +63,39 @@
 				<li class="green">
 					<a href="#" class="icon-home"></a>
 					<ul>
-						<li><a href="<?php echo base_url(); ?>login">Login</a></li>
-					    <li><a href="<?php echo base_url(); ?>user/register">Register</a></li>
-					    <li><a href="<?php echo base_url(); ?>user/change_password">Change Password</a></li>
-					    <li><a href="index.html">Logout</a></li>
+						<?php
+							if(isset($_SESSION['member_id']))
+							{
+								?>
+								<li><a href="<?php echo base_url(); ?>login/log_out">Logout</a></li>
+								<li><a href="<?php echo base_url(); ?>profile">Profile</a></li>
+								<li><a href="<?php echo base_url(); ?>user/change_password">Change Password</a></li>
+								<?php
+							}
+							else
+							{
+								?>
+								<li><a href='<?php echo base_url(); ?>login'>Login</a></li>
+								<li><a href="<?php echo base_url(); ?>user/register">Register</a></li>
+								<?php
+							}
+						?>
+						
+					    
+					    
+					    
 					</ul>
 				</li>
 			   </ul>
              </nav>
            </div>
-           <a class="brand" href="index.html"><img src="<?php echo base_url(); ?>template/user/images/logo.png" alt="logo"></a>
+           <div class="navbar-header">
+           	<a class="navbar-brand" href="index.html">
+           		
+           		<!-- logo -->
+           	</a>	
+           </div>
+           
            <div class="pull-right">
           	<nav class="navbar nav_bottom" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,38 +112,34 @@
 		    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 		        <ul class="nav navbar-nav nav_1">
 		            <li><a href="index.html">Home</a></li>
-		            <li><a href="about.html">About</a></li>
-		    		<li class="dropdown">
-		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matches<span class="caret"></span></a>
-		              <ul class="dropdown-menu" role="menu">
-		                <li><a href="matches.html">New Matches</a></li>
-		                <li><a href="viewed-profile.html">Who Viewed my Profile</a></li>
-		                <li><a href="viewed-not_contacted.html">Viewed & not Contacted</a></li>
-		                <li><a href="members.html">Premium Members</a></li>
-		                <li><a href="shortlisted.html">Shortlisted Profile</a></li>
-		              </ul>
-		            </li>
-					<li class="dropdown">
-		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Search<span class="caret"></span></a>
-		              <ul class="dropdown-menu" role="menu">
-		                <li><a href="search.html">Regular Search</a></li>
-		                <li><a href="profile.html">Recently Viewed Profiles</a></li>
-		                <li><a href="search-id.html">Search By Profile ID</a></li>
-		                <li><a href="faq.html">Faq</a></li>
-		                <li><a href="shortcodes.html">Shortcodes</a></li>
-		              </ul>
-		            </li>
 		            <li class="dropdown">
-		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Messages<span class="caret"></span></a>
+		            	<a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us<span class="caret"></span></a>
 		              <ul class="dropdown-menu" role="menu">
-		                <li><a href="inbox.html">Inbox</a></li>
-		                <li><a href="inbox.html">New</a></li>
-		                <li><a href="inbox.html">Accepted</a></li>
-		                <li><a href="sent.html">Sent</a></li>
-		                <li><a href="upgrade.html">Upgrade</a></li>
+		                <li><a href="matches.html">History and Establishment</a></li>
+		                <li><a href="viewed-profile.html">Managing Committee</a></li>
+		                <li><a href="viewed-not_contacted.html">Life Time Members</a></li>
+		                <li><a href="members.html">Committee Details</a></li>
+		                <li><a href="shortlisted.html">Past President</a></li>
+		                <li><a href="shortlisted.html">Origination Structure</a></li>
+    		            <li><a href="shortlisted.html">Aims and Objective</a></li>
+    		            <li><a href="shortlisted.html">Grant and Relief </a></li>
 		              </ul>
 		            </li>
-		            <li class="last"><a href="contact.html">Contacts</a></li>
+		            <li><a href="index.html">Samast Samaj</a></li>
+		            <li><a href="index.html">Event</a></li>
+
+		    		<li class="dropdown">
+		              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gallery<span class="caret"></span></a>
+		              <ul class="dropdown-menu" role="menu">
+		                <li><a href="matches.html">Photos</a></li>
+		                <li><a href="viewed-profile.html">Videos</a></li>
+		              </ul>
+		            </li>
+					<li><a href="index.html">Donor</a></li> 		                
+					<li><a href="index.html">Matrimonial</a></li>
+					<li><a href="index.html">Download</a></li>
+					<li><a href="index.html">Information</a></li>
+					<li><a href="index.html">Contact Us</a></li>
 		        </ul>
 		     </div><!-- /.navbar-collapse -->
 		    </nav>
